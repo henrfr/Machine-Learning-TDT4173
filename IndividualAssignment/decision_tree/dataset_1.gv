@@ -1,0 +1,17 @@
+digraph G {
+	root [label="Split on: Outlook"]
+	rootHumiditySunny [label="Split on: Humidity"]
+	root -> rootHumiditySunny [label="Value: Sunny"]
+	rootHumiditySunnyNoHigh [label="Class: No" fillcolor="#FFCCCB" style=filled]
+	rootHumiditySunny -> rootHumiditySunnyNoHigh [label="Value: High"]
+	rootHumiditySunnyYesNormal [label="Class: Yes" fillcolor="#90EE90" style=filled]
+	rootHumiditySunny -> rootHumiditySunnyYesNormal [label="Value: Normal"]
+	rootYesOvercast [label="Class: Yes" fillcolor="#90EE90" style=filled]
+	root -> rootYesOvercast [label="Value: Overcast"]
+	rootWindRain [label="Split on: Wind"]
+	root -> rootWindRain [label="Value: Rain"]
+	rootWindRainYesWeak [label="Class: Yes" fillcolor="#90EE90" style=filled]
+	rootWindRain -> rootWindRainYesWeak [label="Value: Weak"]
+	rootWindRainNoStrong [label="Class: No" fillcolor="#FFCCCB" style=filled]
+	rootWindRain -> rootWindRainNoStrong [label="Value: Strong"]
+}
