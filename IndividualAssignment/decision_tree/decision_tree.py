@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 import random
-import graphviz as gv
+# import graphviz as gv # used for visualizations
 # IMPORTANT: DO NOT USE ANY OTHER 3RD PARTY PACKAGES
 # (math, random, collections, functools, etc. are perfectly fine)
 
@@ -155,26 +155,27 @@ class DecisionTree:
             post_process_rules.append((list(rule[:-1]), rule[-1]))
         return post_process_rules
     
-    def display(self, leaf_class: dict, filename: str = "dt.gv"):
+    # Uses graphviz, uncomment to display trees.
+    # def display(self, leaf_class: dict, filename: str = "dt.gv"):
 
-        def generate_tree(tree, prev_node, G):
-            if isinstance(tree, DecisionTree.Node): # This will stop the recursion at the leaf nodes.
-                for edge, value in tree.children.items():
-                    if not bool(value.children): # If it is a leaf node, indicate the class
-                        prev_name = prev_node + value.name + str(edge)
-                        G.node(name=prev_name, label=f"Class: {value.name}",style='filled', fillcolor=leaf_class[value.name])
-                        G.edge(prev_node, prev_name, f"Value: {edge}")
-                        generate_tree(value, prev_name, G)
-                    elif isinstance(value, DecisionTree.Node): # This block applies to all nodes not being top or bottom nodes.
-                        prev_name = prev_node + value.name + str(edge)
-                        G.node(name=prev_name, label=f"Split on: {value.name}")
-                        G.edge(prev_node, prev_name, f"Value: {edge}")
-                        generate_tree(value, prev_name, G)
+    #     def generate_tree(tree, prev_node, G):
+    #         if isinstance(tree, DecisionTree.Node): # This will stop the recursion at the leaf nodes.
+    #             for edge, value in tree.children.items():
+    #                 if not bool(value.children): # If it is a leaf node, indicate the class
+    #                     prev_name = prev_node + value.name + str(edge)
+    #                     G.node(name=prev_name, label=f"Class: {value.name}",style='filled', fillcolor=leaf_class[value.name])
+    #                     G.edge(prev_node, prev_name, f"Value: {edge}")
+    #                     generate_tree(value, prev_name, G)
+    #                 elif isinstance(value, DecisionTree.Node): # This block applies to all nodes not being top or bottom nodes.
+    #                     prev_name = prev_node + value.name + str(edge)
+    #                     G.node(name=prev_name, label=f"Split on: {value.name}")
+    #                     G.edge(prev_node, prev_name, f"Value: {edge}")
+    #                     generate_tree(value, prev_name, G)
 
-        G = gv.Digraph("G", filename=filename)
-        G.node(name="root", label = f"Split on: {self.tree.name}")
-        generate_tree(self.tree, "root", G)
-        G.view()
+    #     G = gv.Digraph("G", filename=filename)
+    #     G.node(name="root", label = f"Split on: {self.tree.name}")
+    #     generate_tree(self.tree, "root", G)
+    #     G.view()
 
 # --- Some utility functions 
     
